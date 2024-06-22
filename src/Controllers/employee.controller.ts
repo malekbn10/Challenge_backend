@@ -67,6 +67,10 @@ class employeeController {
         }
 
     }
+    urlNotFound = async (req : Request , res : Response , next : NextFunction) => {
+        next(new HttpException(404, ' Request not found'));
+
+    }
     //retrive Employees controller
     getEmployees = async (req: Request, res: Response , next : NextFunction) => {
 

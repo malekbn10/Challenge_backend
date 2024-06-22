@@ -14,5 +14,9 @@ employeeRouter.get('/', EmployeeController.getEmployees)
 //update an employee
 employeeRouter.put('/:id', EmployeeController.updateEmployee)
 
+//Invalid request 
+employeeRouter.get('*', EmployeeController.urlNotFound)
+
+
 //delete an employee
 employeeRouter.delete('/:id', EmployeeController.deleteEmployee)
