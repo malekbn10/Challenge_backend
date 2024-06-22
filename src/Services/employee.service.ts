@@ -17,9 +17,9 @@ export class employeeService {
     async updateEmployee(id : string ,data : any ){
         try {
             const employee = await Employee.findByIdAndUpdate({_id : id} , data , {new : true});
-            if (!employee){
-                return "employee not found"
-            }
+            // if (!employee){
+            //     return "employee not found"
+            // }
             return employee ;
         } catch (error) {
             console.log(error);
@@ -30,12 +30,8 @@ export class employeeService {
     //Delete an employee
     async deleteEmployee(id: string) {
         try {
-            const employee = await Employee.findByIdAndDelete(id)
-            if (!employee) {
-
-                return "employee not found"
-            
-            }
+            const employee = await Employee.findByIdAndDelete(id);
+            return employee
         } catch (error) {
             console.log(error)
         }

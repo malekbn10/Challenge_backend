@@ -3,16 +3,16 @@ import express from "express";
 import { EmployeeController } from './../Controllers/employee.controller';
 
 //initiating the router
-export const router = express.Router()
+export const employeeRouter = express.Router()
 
 //add employee route
-router.post('/',EmployeeController.addEmployee)
+employeeRouter.post('/',EmployeeController.addEmployee)
 
 //get employees
-router.get('/', EmployeeController.getEmployees)
+employeeRouter.get('/', EmployeeController.getEmployees)
 
 //update an employee
-router.put('/:id', EmployeeController.updateEmployee)
+employeeRouter.put('/:id', EmployeeController.updateEmployee)
 
 //delete an employee
-router.delete('/:id', EmployeeController.deleteEmployee)
+employeeRouter.delete('/:id', EmployeeController.deleteEmployee)

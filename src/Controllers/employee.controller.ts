@@ -1,11 +1,14 @@
 import { employeeServices } from "../Services/employee.service";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { EmployeesSchemaValidate } from "../Models/employee";
+import HttpException from "../../Exceptions/HttpException";
+import EmployeeNotFoundException from "../../Exceptions/EmployeeNotFoundException";
+import ValidationException from "../../Exceptions/ValidationException";
 
 class employeeController {
 
     //add Employee controller
-    addEmployee = async (req: Request, res: Response) => {
+    addEmployee = async (req: Request, res: Response, next : NextFunction) => {
 
         //data to be saved in database
         const data = {
@@ -20,7 +23,7 @@ class employeeController {
         const { error, value } = EmployeesSchemaValidate.validate(data);
 
         if (error) {
-            res.send(error.message)
+            next(new ValidationException(error.message));
 
         } else {
             //call the create employee function in the service and pass the data from the request
@@ -31,33 +34,50 @@ class employeeController {
     }
 
     //update Employee controller
-    updateEmployee = async (req: Request, res: Response) => {
+    updateEmployee = async (req: Request, res: Response,next : NextFunction) => {
 
         const id = req.params.id
         const { error, value } = EmployeesSchemaValidate.validate(req.body);
 
         if (error) {
-            res.send(error.message);
+            next(new ValidationException(error.message));
 
         } else {
             //call the update employee function in the service and pass the data from the request
             const employee = await employeeServices.updateEmployee(id, value);
-            res.status(201).send(employee);
+            if (employee) {
+            res.status(201).send(employee);    
+            } else {
+            next(new EmployeeNotFoundException(id));
+                
+            }
         }
     }
 
     //delete a post
-    deleteEmployee = async (req: Request, res: Response) => {
+    deleteEmployee = async (req: Request, res: Response , next : NextFunction)  => {
         const id = req.params.id
-        await employeeServices.deleteEmployee(id)
+        const employee = await employeeServices.deleteEmployee(id);
+        if (employee) {
+        res.send(employee);
+            
+        } else {
+            next(new EmployeeNotFoundException(id));
+            
+        }
 
-        res.send('Employe deleted successfully');
     }
     //retrive Employees controller
-    getEmployees = async (req: Request, res: Response) => {
+    getEmployees = async (req: Request, res: Response , next : NextFunction) => {
 
         const employees = await employeeServices.getEmployees();
+        if (employees) {
         res.status(201).send(employees);
+            
+        } else {
+            next(new HttpException(404, ' No Employees found'));
+
+        }
 
     }
 }
