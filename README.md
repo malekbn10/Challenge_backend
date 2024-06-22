@@ -38,3 +38,6 @@ API_URL = /api/v1
 
 **Contact**
 * For any inquiries or support, please contact me at malekbennjima7@gmail.com.
+
+**Run the project**
+* to run the project you need to type : npm run dev
