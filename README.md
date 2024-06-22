@@ -11,7 +11,7 @@ Welcome to the backend repository of my Employee managment app ! This repository
 
 **Getting Started**:
 
-To get started with the backend of our group buying platform, follow these steps:
+To get started with the backend of the app, follow these steps:
 
 ● Clone the Repository: Clone this repository to your local machine using the following command:
 
