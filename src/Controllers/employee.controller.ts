@@ -1,9 +1,9 @@
 import { employeeServices } from "../Services/employee.service";
 import { NextFunction, Request, Response } from "express";
 import { EmployeesSchemaValidate } from "../Models/employee";
-import HttpException from "../../Exceptions/HttpException";
-import EmployeeNotFoundException from "../../Exceptions/EmployeeNotFoundException";
-import ValidationException from "../../Exceptions/ValidationException";
+import HttpException from "../Exceptions/HttpException";
+import EmployeeNotFoundException from "../Exceptions/EmployeeNotFoundException";
+import ValidationException from "../Exceptions/ValidationException";
 
 class employeeController {
 

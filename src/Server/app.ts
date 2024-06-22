@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 // Project dependencies
 import {db} from "../Config/db.config";
 import { employeeRouter } from './../Routes/employee.routes';
-import errorMiddleware from "../../Middlewares/error.middleware";
+import errorMiddleware from "../Middlewares/error.middleware";
 
  
 dotenv.config();
